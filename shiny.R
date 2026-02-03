@@ -16,7 +16,8 @@
   library(dplyr)
   library(grid)
   
-  encuesta<-read_excel("C:\\Users\\PC\\Desktop\\Trabajo Final Cintia Sabrina Rodriguez Chybik\\Trabajo Final Cintia Sabrina Rodriguez Chybik\\Base de datos depurada.xlsx")
+  encuesta<-read_excel("C:\\
+                       Users\\PC\\Desktop\\Trabajo Final Cintia Sabrina Rodriguez Chybik\\Trabajo Final Cintia Sabrina Rodriguez Chybik\\Base de datos depurada.xlsx")
   
   tipo_analisis<-c("UNIVARIADO","BIVARIADO")
   
@@ -28,9 +29,8 @@
          h1(icon("chart-column"), " ANÁLISIS EXPLORATORIO INTERACTIVO", 
             style = "color: #1B5E20;"),
          h4("Encuesta del Plan de Estudios - Ingeniería Agronómica"),
-         tags$hr(style = "width: 50%; border-color: #4CAF50;"),
-         p("Herramienta desarrollada para la Comisión de Seguimiento (COSPE IA)", 
-           style = "color: #666; font-size: 14px;")
+         tags$hr(style = "width: 50%; border-color: #4CAF50;")
+         
        )
      ),
     
@@ -308,46 +308,46 @@
         req(input$variables_indep)
         
         if(input$variables_indep == "Condicion.alcanzadaxIngreso") {
-          grid.arrange(ggplot_34, ggplot_35, ggplot_36, ncol = 3)
+          grid.arrange(ggplot_34+labs(title = "Matemática I") , ggplot_35+labs(title = "Biología"), ggplot_36+labs(title = "Química General e Inorgánica"), ncol = 3)
                                       
         } else if(input$variables_indep == "Condicion.alcanzadaxTiene.trabajo") {
-          grid.arrange(ggplot_37, ggplot_38, ggplot_39, ncol = 3)
+          grid.arrange(ggplot_37+labs(title = "Matemática I"), ggplot_38+labs(title = "Biología"), ggplot_39+labs(title = "Química General e Inorgánica"), ncol = 3)
                        
         } else if(input$variables_indep == "Asistencia.consultaxTiempo.traslado") {
-          grid.arrange(ggplot_40, ggplot_41, ggplot_42, ncol = 3)
+          grid.arrange(ggplot_40+labs(title = "Matemática I"), ggplot_41+labs(title = "Biología"), ggplot_42+labs(title = "Química General e Inorgánica"), ncol = 3)
           
         } else if(input$variables_indep == "Calidad.explicativa.docentexCondicion.alcanzada") {
-          grid.arrange(ggplot_43, ggplot_44, ggplot_45, ncol = 3)
+          grid.arrange(ggplot_43+labs(title = "Matemática I"), ggplot_44+labs(title = "Biología"), ggplot_45+labs(title = "Química General e Inorgánica"), ncol = 3)
                        
         } else if(input$variables_indep == "Asistencia.consulta×Contenidos") {
-          grid.arrange(ggplot_46,ggplot_47, ggplot_48 , ncol = 3)
+          grid.arrange(ggplot_46+labs(title = "Matemática I"),ggplot_47+labs(title = "Biología"), ggplot_48+labs(title = "Química General e Inorgánica") , ncol = 3)
           
         } else if(input$variables_indep == "Condicion.alcanzada×Asistencia.consulta") {
-          grid.arrange(ggplot_49,ggplot_50, ggplot_51 , ncol = 3)
+          grid.arrange(ggplot_49+labs(title = "Matemática I"),ggplot_50+labs(title = "Biología"), ggplot_51+labs(title = "Química General e Inorgánica") , ncol = 3)
           
         } else if(input$variables_indep == "Condicion.alcanzadaxCondicion.cursado") {
-          grid.arrange(ggplot_52,ggplot_53, ggplot_54 , ncol = 3)
+          grid.arrange(ggplot_52+labs(title = "Matemática I"),ggplot_53+labs(title = "Biología"), ggplot_54+labs(title = "Química General e Inorgánica") , ncol = 3)
           
         } else if(input$variables_indep == "Condición.alcanzadaxRecursos.utilizado") {
-          grid.arrange(ggplot_55,ggplot_56, ggplot_57 , ncol = 3)
+          grid.arrange(ggplot_55+labs(title = "Matemática I"),ggplot_56+labs(title = "Biología"), ggplot_57+labs(title = "Química General e Inorgánica") , ncol = 3)
         
         } else if(input$variables_indep == "Contenidos.clase.parcialxCondicion.alcanzada") {
-          grid.arrange(ggplot_58,ggplot_59, ggplot_60 , ncol = 3)
+          grid.arrange(ggplot_58+labs(title = "Matemática I"),ggplot_59+labs(title = "Biología"), ggplot_60+labs(title = "Química General e Inorgánica") , ncol = 3)
           
         } else if(input$variables_indep =="Condicion.alcanzada x Contenidos") {
-          grid.arrange(ggplot_61,ggplot_62, ggplot_63 , ncol = 3)
+          grid.arrange(ggplot_61+labs(title = "Matemática I"),ggplot_62+labs(title = "Biología"), ggplot_63+labs(title = "Química General e Inorgánica") , ncol = 3)
         
         } else if(input$variables_indep =="Asistencia.consultaxCalidad.explicativa.docente") {
-          grid.arrange(ggplot_64,ggplot_65, ggplot_66 , ncol = 3)
+          grid.arrange(ggplot_64+labs(title = "Matemática I"),ggplot_65+labs(title = "Biología"), ggplot_66+labs(title = "Química General e Inorgánica") , ncol = 3)
           
         } else if(input$variables_indep == "Calidad.explicativa.docentexAsistencia.particular") {
-          grid.arrange(ggplot_67,ggplot_68, ggplot_69 , ncol = 3)
+          grid.arrange(ggplot_67+labs(title = "Matemática I"),ggplot_68+labs(title = "Biología"), ggplot_69+labs(title = "Química General e Inorgánica") , ncol = 3)
   
         } else if(input$variables_indep == "Condicion.alcanzadaxRendimiento.consulta" ) {
-          grid.arrange(ggplot_70,ggplot_71, ggplot_72 , ncol = 3)
+          grid.arrange(ggplot_70+labs(title = "Matemática I"),ggplot_71+labs(title = "Biología"), ggplot_72+labs(title = "Química General e Inorgánica") , ncol = 3)
           
         } else if(input$variables_indep == "Condicion.alcanzadaxConsignas.final") {
-          grid.arrange(ggplot_76,ggplot_77, ggplot_78 , ncol = 3)  
+          grid.arrange(ggplot_76+labs(title = "Matemática I"),ggplot_77+labs(title = "Biología"), ggplot_78+labs(title = "Química General e Inorgánica") , ncol = 3)  
            
       }})  
           
@@ -422,7 +422,8 @@
                "Asistencia.consulta×Contenidos"= as.data.frame.matrix(tabla19_con_totales), 
                "Condicion.alcanzada×Asistencia.consulta"= as.data.frame.matrix(tabla22_con_totales),
                "Condicion.alcanzadaxCondicion.cursado"= as.data.frame.matrix(tabla25_con_totales),
-               "Condición.alcanzadaxRecursos.utilizado"= as.data.frame.matrix(tabla28_con_totales),
+             
+                 "Condición.alcanzadaxRecursos.utilizado"= as.data.frame.matrix(tabla28_con_totales),
                "Contenidos.clase.parcialxCondicion.alcanzada"= as.data.frame.matrix(tabla31_con_totales),  
                "Condicion.alcanzada x Contenidos"= as.data.frame.matrix(tabla34_con_totales), 
                "Asistencia.consultaxCalidad.explicativa.docente"= as.data.frame.matrix(tabla37_con_totales), 
