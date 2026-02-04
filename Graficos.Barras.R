@@ -1,12 +1,12 @@
 #Busco la ruta del archivo de excel
 file.choose()
-ruta_archivo<-"C:\\Users\\PC\\Downloads\\Encuesta Plan 2023 (Respuestas)(1).xlsx"
+ruta_archivo<-"C:\\Users\\PC\\Desktop\\Trabajo Final Cintia Sabrina Rodriguez Chybik\\Trabajo Final Cintia Sabrina Rodriguez Chybik\\Base de datos depurada.xlsx"
 
 #Leo el archivo de Excel
 install.packages("readxl")
 
 library(readxl)
-encuesta<-read_excel("C:\\Users\\PC\\Downloads\\Encuesta Plan 2023 (Respuestas)(1).xlsx")
+encuesta<-read_excel("C:\\Users\\PC\\Desktop\\Trabajo Final Cintia Sabrina Rodriguez Chybik\\Trabajo Final Cintia Sabrina Rodriguez Chybik\\Base de datos depurada.xlsx")
 install.packages("ggplot2")
 install.packages("gridExtra")
 library(ggplot2)
@@ -29,7 +29,7 @@ ggplot_1<-
 ggplot(frame1, aes(x =Año.de.ingreso, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
    ylim(0,100)+
-  geom_text(aes(label =paste0(frame1$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame1$Porcentaje%in% c("72,8", "23,9"),1.2,-0.2),fontface="bold")+ 
+  geom_text(aes(label =paste0(frame1$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame1$Porcentaje%in% c("72,8", "23,9"),1.2,-0.2),size=5,fontface="bold")+ 
   labs(x = "Año",
        y = "Porcentaje de estudiantes")
        
@@ -49,7 +49,7 @@ ggplot_2<-
 ggplot(frame2, aes(x =Lugar.de.residencia, y =as.numeric(gsub(",", ".", Porcentaje)))) +
        geom_bar(stat = "identity", fill = "steelblue",color="black") +
        ylim(0,100)+
-       geom_text(aes(label =paste0(frame2$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame2$Porcentaje%in% c("51,1","41,3"),1.2,-0.2),fontface="bold")+
+       geom_text(aes(label =paste0(frame2$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame2$Porcentaje%in% c("51,1","41,3"),1.2,-0.2),size=5,fontface="bold")+
        scale_x_discrete(limits = levels(tabla.ordenada2),labels=c("Villa Gobernador Galvez"="VGG"))+
        labs(x = "Localidad",
                 y = "Porcentaje de estudiantes") 
@@ -71,7 +71,7 @@ ggplot(frame3, aes(x =Personas.con.las.que.vive, y =as.numeric(gsub(",", ".", Po
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
   scale_x_discrete(limits = levels(tabla.ordenada3))+
   ylim(0,100)+
-  geom_text(aes(label =paste0(frame3$Porcentaje,"%\n(",Frecuencia,")")),vjust = 1.2,fontface="bold")+
+  geom_text(aes(label =paste0(frame3$Porcentaje,"%\n(",Frecuencia,")")),vjust = 1.2,size=5,fontface="bold")+
   labs(x = "Personas con las que vive",
        y = "Porcentaje de estudiantes") 
 
@@ -91,9 +91,9 @@ frame4$Porcentaje <- gsub(",0$", "", frame4$Porcentaje) #elimino el decimal en 1
 ggplot_4<-
 ggplot(frame4, aes(x =Tiempo.de.traslado, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  scale_x_discrete(limits = levels(tabla.ordenada4))+
+  scale_x_discrete(limits = levels(tabla.ordenada4),labels= c("Entre 1 y 2 hs."="1 - 2 hs","Entre 2 y 3 hs."= "2 - 3 hs"))+
   ylim(0,100)+
-  geom_text(aes(label =paste0(frame4$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame4$Porcentaje%in% c("53,4","26,1","17"),1.1,-0.2),fontface="bold")+
+  geom_text(aes(label =paste0(frame4$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame4$Porcentaje%in% c("53,4","26,1","17"),1.1,-0.2),size=5,fontface="bold")+
   labs(x = "Tiempo",
        y = "Porcentaje de estudiantes") 
 
@@ -114,7 +114,7 @@ ggplot(frame5, aes(x =Tiene.trabajo, y =as.numeric(gsub(",", ".", Porcentaje))))
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
   scale_x_discrete(limits = levels(tabla.ordenada5))+
   ylim(0,100)+
-  geom_text(aes(label =paste0(frame5$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.1,fontface="bold")+
+  geom_text(aes(label =paste0(frame5$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.1,size=5,fontface="bold")+
   labs(x = "¿Trabajan?",
        y = "Porcentaje de estudiantes") 
 
@@ -131,9 +131,10 @@ frame6<- data.frame("Horas de trabajo" = names(table6),
 ggplot_6<-
 ggplot(frame6, aes(x =Horas.de.trabajo, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
+  scale_x_discrete(limits = levels(table6),labels=c("Hasta 4 hs. semanales."="Hasta 4 hs","Hasta 8 hs. semanales."="Hasta 8 hs","Más de 10 hs. semanales."="Más de 10 hs"))+
   ylim(0,100)+
-  geom_text(aes(label =paste0(frame6$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.1,fontface="bold")+
-  labs(x = "Horas",
+  geom_text(aes(label =paste0(frame6$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.1,size=5,fontface="bold")+
+  labs(x = "Horas semanales",
        y = "Porcentaje de estudiantes") 
 
 ##################MATEMATICA##################################################################################
@@ -152,7 +153,7 @@ frame7<- data.frame("Condicion de cursado" = names(table7),
 G1.1<-ggplot(frame7, aes(x =Condicion.de.cursado, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
   ylim(0,100)+
-  geom_text(aes(label =paste0(frame7$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame7$Porcentaje%in% "73,9",1.1,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame7$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame7$Porcentaje%in% "73,9",1.1,-0.2),size=4,fontface="bold")+
   scale_x_discrete(limits = levels(tabla.ordenada7),labels=c("Ingresante"="Ingresante","Cambio de plan"="Cambio\n de plan","Recursante"="Recursante"))+
   labs(title = "Matemática I",
        x = "  ",
@@ -179,7 +180,7 @@ G2.1<-ggplot(frame8, aes(x =Condicion.alcanzada.I, y =as.numeric(gsub(",", ".", 
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada8),labels=c("Regular"="Regular","Promocioné"="Promocionó","Libre (rendí las evaluaciones pero me fue mal)"="Libre","Abandoné"="Abandonó","Me anoté, pero no empecé a cursar."="No cursó"))+
-  geom_text(aes(label =paste0(frame8$Porcentaje,"%\n(",Frecuencia,")")),size=2.5,fontface="bold",vjust=ifelse(frame8$Porcentaje%in% 1,1.2,-0.2))+
+  geom_text(aes(label =paste0(frame8$Porcentaje,"%\n(",Frecuencia,")")),size=4,fontface="bold",vjust=ifelse(frame8$Porcentaje%in% 1,1.2,-0.2))+
   labs(title = "Matemática I",
        x = " ",
        y = "Porcentaje de estudiantes")+
@@ -203,7 +204,7 @@ frame9$Porcentaje <- gsub(",0$", "", frame9$Porcentaje) #elimino el decimal en 1
 G3.1<-ggplot(frame9, aes(x =ContenidosI, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
   ylim(0,100)+
-  geom_text(aes(label =paste0(frame9$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame9$Porcentaje%in% "86,7",1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame9$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame9$Porcentaje%in% "86,7",1.2,-0.2),size=4,fontface="bold")+
   scale_x_discrete(limits = levels(tabla.ordenada9))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Matemática I",
        x = "  ",
@@ -226,7 +227,7 @@ frame10<- data.frame("Calidad explicativaI" = names(table10),
 G4.1<-ggplot(frame10, aes(x =Calidad.explicativaI, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
   ylim(0,100)+
-  geom_text(aes(label =paste0(frame10$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame10$Porcentaje%in% c("22,5","66,3"),1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame10$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame10$Porcentaje%in% c("22,5","66,3"),1.2,-0.2),size=4,fontface="bold")+
   scale_x_discrete(limits = levels(tabla.ordenada10),labels=c("Muy claras"="Muy\n claras","Claras"="Claras","No me resultaron claras"="No\n claras"))+
   labs(title = "Matemática I ",
        x = " ",
@@ -249,7 +250,7 @@ frame11<- data.frame("Recursos utilizados.I" = names(table11),
 
 G5.1<-ggplot(frame11, aes(x =Recursos.utilizados.I, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame11$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame11$Porcentaje%in% c("32,2","61,1"),1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame11$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame11$Porcentaje%in% c("32,2","61,1"),1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada11),labels=c("Muy adecuados"="Muy\n adecuados","Adecuados"="Adecuados","Poco adecuados"="Poco\n adecuados"))+
   labs(title = "Matemática I ",
@@ -274,7 +275,7 @@ frame12$Porcentaje <- gsub(",0$", "", frame12$Porcentaje) #elimino el decimal en
 
 G6.1<-ggplot(frame12, aes(x =Contenidos.clase.parcial.I, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame12$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame12$Porcentaje%in% 1,1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame12$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame12$Porcentaje%in% 1,1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada12),labels=c("Si, los vimos varias veces"="SI","Algunos temas los vimos poco en las clases."="SI,\n dados\n poco","Algunos temas no los vimos en las clases."="algunos\n no","No,el examen parcial fue muy distinto a lo dado en clase"="NO"))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Matemática I",
@@ -297,7 +298,7 @@ frame13<- data.frame("Consignas parcial I" = names(table13),
 
 G7.1<-ggplot(frame13, aes(x =Consignas.parcial.I, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame13$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame13$Porcentaje%in% c("22,2","72,2"),1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame13$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame13$Porcentaje%in% c("22,2","72,2"),1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada13),labels=c("Muy claras"="Muy\n claras","Claras"="Claras","Poco claras"="Poco\n claras"))+
   labs(title = "Matemática I",
@@ -320,7 +321,7 @@ frame14<- data.frame("Tiempo examen I" = names(table14),
 
 G8.1<-ggplot(frame14, aes(x =Tiempo.examen.I, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame14$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame14$Porcentaje%in% "91,1",1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame14$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame14$Porcentaje%in% "91,1",1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada14))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Matemática I",
@@ -344,7 +345,7 @@ frame15<- data.frame("Asistencia consulta I" = names(table15),
 
 G9.1<-ggplot(frame15, aes(x =Asistencia.consulta.I, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame15$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame15$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada15))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Matemática I ",
@@ -367,7 +368,7 @@ frame16<- data.frame("Rendimiento consulta I" = names(table16),
 
 G10.1<-ggplot(frame16, aes(x =Rendimiento.consulta.I, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame16$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame16$Porcentaje%in% c("36,2","56,5"),1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame16$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame16$Porcentaje%in% c("36,2","56,5"),1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada16),labels=c("Muy útiles"="Muy\n útiles","Útiles"="Útiles","Poco útiles"="Poco\n útiles"))+
   labs(title = "Matemática I",
@@ -390,7 +391,7 @@ frame17$Porcentaje <- gsub(",0$", "", frame17$Porcentaje) #elimino el decimal en
 
 G11.1<-ggplot(frame17, aes(x =Asistencia.particular.I, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame17$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame17$Porcentaje%in% c(44,56),1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame17$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame17$Porcentaje%in% c(44,56),1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada17))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Matemática I",
@@ -413,7 +414,7 @@ frame18$Porcentaje <- gsub(",0$", "", frame18$Porcentaje) #elimino el decimal en
 
 G12.1<-ggplot(frame18, aes(x =Examen.final.I, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame18$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame18$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada18),labels=c("SÍ"="Si","NO, porque Promocioné"="No\n(promocionó)","NO"="No"))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Matemática I ",
@@ -436,7 +437,7 @@ frame19$Porcentaje <- gsub(",0$", "", frame19$Porcentaje) #elimino el decimal en
 
 G13.1<-ggplot(frame19, aes(x =Consignas.final.I, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame19$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame19$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada19),labels=c("Muy claras"="Muy\n claras","Claras"="Claras","Poco claras"="Poco\n claras"))+
   labs(title = "Matemática I",
@@ -460,7 +461,7 @@ frame20$Porcentaje <- gsub(",0$", "", frame20$Porcentaje) #elimino el decimal en
 
 G14.1<-ggplot(frame20, aes(x =Tiempo.examen.final.I, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame20$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame20$Porcentaje%in% "90",1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame20$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame20$Porcentaje%in% "90",1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada20))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Matemática I",
@@ -489,7 +490,7 @@ G1.2<-ggplot(frame21, aes(x =Condicion.de.cursado.II, y =as.numeric(gsub(",", ".
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
   scale_x_discrete(limits = levels(tabla.ordenada21),labels=c("Ingresante"="Ingresante","Cambio de plan"="Cambio\n de plan","Recursante"="Recursante"))+
   ylim(0,100)+
-  geom_text(aes(label =paste0(frame21$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame21$Porcentaje%in% "81,3",1.2,-0.2),size = 2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame21$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame21$Porcentaje%in% "81,3",1.2,-0.2),size = 4,fontface="bold")+
   labs(title = "Biología",
        x = "Condición cursado",
        y = " ")+
@@ -513,7 +514,7 @@ frame22$Porcentaje <- gsub(",0$", "", frame22$Porcentaje) #elimino el decimal en
 
 G2.2<-ggplot(frame22, aes(x =Condicion.alcanzada.II, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame22$Porcentaje,"%\n(",Frecuencia,")")),size=2.5,fontface="bold",vjust=ifelse(frame22$Porcentaje%in% 1,1.2,-0.2))+
+  geom_text(aes(label =paste0(frame22$Porcentaje,"%\n(",Frecuencia,")")),size=4,fontface="bold",vjust=ifelse(frame22$Porcentaje%in% 1,1.2,-0.2))+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada22),labels=c("Regular"="Regular","Promocioné"="Promocionó","Libre (rendí las evaluaciones pero me fue mal)"="Libre","Abandoné"="Abandonó","Me anoté, pero no empecé a cursar."="No cursó"))+
   labs(title = "Biología ",
@@ -538,7 +539,7 @@ frame23<- data.frame("ContenidosII" = names(table23),
 
 G3.2<-ggplot(frame23, aes(x =ContenidosII, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame23$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame23$Porcentaje%in% c("22,2","68,9"),1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame23$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame23$Porcentaje%in% c("22,2","68,9"),1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada23))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Biología ",
@@ -561,7 +562,7 @@ frame24<- data.frame("Calidad explicativaII" = names(table24),
 
 G4.2<-ggplot(frame24, aes(x =Calidad.explicativaII, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame24$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame24$Porcentaje%in% c("53,3","34,4"),1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame24$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame24$Porcentaje%in% c("53,3","34,4"),1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada24),labels=c("Muy claras"="Muy\n claras","Claras"="Claras","No me resultaron claras"="No\n claras"))+
   labs(title = "Biología ",
@@ -584,7 +585,7 @@ frame25<- data.frame("Recursos utilizados.II" = names(table25),
 
 G5.2<-ggplot(frame25, aes(x =Recursos.utilizados.II, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame25$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame25$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada11),labels=c("Muy adecuados"="Muy\n adecuados","Adecuados"="Adecuados","Poco adecuados"="Poco\n adecuados"))+
   labs(title = "Biología ",
@@ -609,7 +610,7 @@ frame26$Porcentaje <- gsub(",0$", "", frame26$Porcentaje) #elimino el decimal en
 
 G6.2<-ggplot(frame26, aes(x =Contenidos.clase.parcial.II, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame26$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame26$Porcentaje%in% 1,1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame26$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame26$Porcentaje%in% 1,1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada26),labels=c("Si, los vimos varias veces"="SI","Algunos temas los vimos poco en las clases."="SI,\n dados\n poco","Algunos temas no los vimos en las clases."="algunos\n no","No,el examen parcial fue muy distinto a lo dado en clase"="NO"))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Biología",
@@ -634,7 +635,7 @@ frame27<- data.frame("Consignas parcial II" = names(table27),
 
 G7.2<-ggplot(frame27, aes(x =Consignas.parcial.II, y =as.numeric(gsub(",", ".", Porcentaje))))+
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame27$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame27$Porcentaje%in% c("23,3","64,4"),1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame27$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame27$Porcentaje%in% c("23,3","64,4"),1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada27),labels=c("Muy claras"="Muy\n claras","Claras"="Claras","Poco claras"="Poco\n claras"))+
   labs(title = "Biología",
@@ -656,7 +657,7 @@ frame28<- data.frame("Tiempo examen II" = names(table28),
 
 G8.2<-ggplot(frame28, aes(x =Tiempo.examen.II, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame28$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame28$Porcentaje%in% "94,4",1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame28$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame28$Porcentaje%in% "94,4",1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada28))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Biología",
@@ -680,7 +681,7 @@ frame29<- data.frame("Asistencia consulta II" = names(table29),
 
 G9.2<-ggplot(frame29, aes(x =Asistencia.consulta.II, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame29$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame29$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada29))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Biología ",
@@ -702,7 +703,7 @@ frame30<- data.frame("Rendimiento consulta II" = names(table30),
 
 G10.2<-ggplot(frame30, aes(x =Rendimiento.consulta.II, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame30$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame30$Porcentaje%in% c("52,1","35,4"),1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame30$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame30$Porcentaje%in% c("52,1","35,4"),1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada30),labels=c("Muy útiles"="Muy\n útiles","Útiles"="Útiles","Poco útiles"="Poco\n útiles"))+
   labs(title = "Biología ",
@@ -726,7 +727,7 @@ frame31<- data.frame("Asistencia particular II" = names(table31),
 
 G11.2<-ggplot(frame31, aes(x =Asistencia.particular.II, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame31$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame31$Porcentaje%in% "97,8",1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame31$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame31$Porcentaje%in% "97,8",1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada31))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Biología ",
@@ -749,7 +750,7 @@ frame32$Porcentaje <- gsub(",0$", "", frame32$Porcentaje) #elimino el decimal en
 
 G12.2<-ggplot(frame32, aes(x =Examen.final.II, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame32$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame32$Porcentaje%in% c("43,3","46,7"),1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame32$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame32$Porcentaje%in% c("43,3","46,7"),1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada32),labels=c("SÍ"="Si","NO, porque Promocioné"="No\n(promocionó)","NO"="No"))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Biología",
@@ -772,7 +773,7 @@ frame33$Porcentaje <- gsub(",0$", "", frame33$Porcentaje) #elimino el decimal en
 
 G13.2<-ggplot(frame33, aes(x =Consignas.final.II, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame33$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=2.5,fontface="bold")+ 
+  geom_text(aes(label =paste0(frame33$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=4,fontface="bold")+ 
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada33),labels=c("Muy claras"="Muy\n claras","Claras"="Claras","Poco claras"="Poco\n claras"))+
   labs(title = "Biología ",
@@ -795,7 +796,7 @@ frame34<- data.frame("Tiempo examen final II" = names(table34),
 
 G14.2<-ggplot(frame34, aes(x =Tiempo.examen.final.II, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame34$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame34$Porcentaje%in% "92,3",1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame34$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame34$Porcentaje%in% "92,3",1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada34))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Biología ",
@@ -821,7 +822,7 @@ frame35$Porcentaje <- gsub(",0$", "", frame35$Porcentaje) #elimino el decimal en
 G1.3<-ggplot(frame35, aes(x =Condicion.de.cursado.III, y =as.numeric(gsub(",", ".", Porcentaje))))  +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
   scale_x_discrete(limits = levels(tabla.ordenada35),labels=c("Ingresante"="Ingresante","Cambio de plan"="Cambio\n de plan","Recursante"="Recursante"))+
-  geom_text(aes(label =paste0(frame35$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame35$Porcentaje%in% "81,3",1.2,-0.2),size = 2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame35$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame35$Porcentaje%in% "81,3",1.2,-0.2),size = 4,fontface="bold")+
   ylim(0,100)+
   labs(title = "Química G. e I.",
        x = "  ",
@@ -845,7 +846,7 @@ frame36$Porcentaje <- gsub(",0$", "", frame36$Porcentaje) #elimino el decimal en
 
 G2.3<-ggplot(frame36, aes(x =Condicion.alcanzada.III, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame36$Porcentaje,"%\n(",Frecuencia,")")),size=2.5,fontface="bold",vjust=ifelse(frame36$Porcentaje%in% 1,1.2,-0.2))+
+  geom_text(aes(label =paste0(frame36$Porcentaje,"%\n(",Frecuencia,")")),size=4,fontface="bold",vjust=ifelse(frame36$Porcentaje%in% 1,1.2,-0.2))+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada36),labels=c("Regular"="Regular","Promocioné"="Promocionó","Libre (rendí las evaluaciones pero me fue mal)"="Libre","Abandoné"="Abandonó","Me anoté, pero no empecé a cursar."="No cursó"))+
   labs(title = "Química G. e I. ",
@@ -868,7 +869,7 @@ frame37<- data.frame("ContenidosIII" = names(table37),
 
 G3.3<-ggplot(frame37, aes(x =ContenidosIII, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame37$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame37$Porcentaje%in% c("74,4","23,1"),1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame37$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame37$Porcentaje%in% c("74,4","23,1"),1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada37))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Química G. e I.",
@@ -892,7 +893,7 @@ frame38<- data.frame("Calidad explicativaIII" = names(table38),
 
 G4.3<-ggplot(frame38, aes(x =Calidad.explicativaIII, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame38$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame38$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada38),labels=c("Muy claras"="Muy\n claras","Claras"="Claras","No me resultaron claras"="No\n claras"))+
   labs(title = "Química G. e I. ",
@@ -915,7 +916,7 @@ frame39<- data.frame("Recursos utilizados.III" = names(table39),
 
 G5.3<-ggplot(frame39, aes(x =Recursos.utilizados.III, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame39$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame39$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada11),labels=c("Muy adecuados"="Muy\n adecuados","Adecuados"="Adecuados","Poco adecuados"="Poco\n adecuados"))+
   labs(title = " Química G. e I.",
@@ -940,7 +941,7 @@ frame40$Porcentaje <- gsub(",0$", "", frame40$Porcentaje) #elimino el decimal en
 
 G6.3<-ggplot(frame40, aes(x =Contenidos.clase.parcial.III, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame40$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame40$Porcentaje%in% 1,1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame40$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame40$Porcentaje%in% 1,1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada26),labels=c("Si, los vimos varias veces"="SI","Algunos temas los vimos poco en las clases."="SI,\n dados\n poco","Algunos temas no los vimos en las clases."="algunos\n no","No,el examen parcial fue muy distinto a lo dado en clase"="NO"))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Química G. e I. ",
@@ -965,7 +966,7 @@ frame41<- data.frame("Consignas parcial III" = names(table41),
 
 G7.3<-ggplot(frame41, aes(x =Consignas.parcial.III, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame41$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame41$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada41),labels=c("Muy claras"="Muy\n claras","Claras"="Claras","Poco claras"="Poco\n claras"))+
   labs(title = "Química G. e I.",
@@ -988,7 +989,7 @@ frame42<- data.frame("Tiempo examen III" = names(table42),
 
 G8.3<-ggplot(frame42, aes(x =Tiempo.examen.III, y =as.numeric(gsub(",", ".", Porcentaje))))+
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame42$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame42$Porcentaje%in% "89,7",1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame42$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame42$Porcentaje%in% "89,7",1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada28))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Química G. e I ",
@@ -1012,7 +1013,7 @@ frame43<- data.frame("Asistencia consulta III" = names(table43),
 
 G9.3<-ggplot(frame43, aes(x =Asistencia.consulta.III, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame43$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame43$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada43))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Química G. e I. ",
@@ -1036,7 +1037,7 @@ frame44<- data.frame("Rendimiento consulta III" = names(table44),
 
 G10.3<-ggplot(frame44, aes(x =Rendimiento.consulta.III, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame44$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame44$Porcentaje%in% c("28,3","63,3"),1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame44$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame44$Porcentaje%in% c("28,3","63,3"),1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada44),labels=c("Muy útiles"="Muy\n útiles","Útiles"="Útiles","Poco útiles"="Poco\n útiles"))+
   labs(title = "Química G. e I. ",
@@ -1061,7 +1062,7 @@ frame45<- data.frame("Asistencia particular III" = names(table45),
 
 G11.3<-ggplot(frame45, aes(x =Asistencia.particular.III, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame45$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame45$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada45))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Química G. e I. ",
@@ -1084,7 +1085,7 @@ frame46<- data.frame("Examen final III" = names(table46),
 
 G12.3<-ggplot(frame46, aes(x =Examen.final.III, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame46$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame46$Porcentaje%in% c("42,3","56,4"),1.2,-0.2),size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame46$Porcentaje,"%\n(",Frecuencia,")")),vjust=ifelse(frame46$Porcentaje%in% c("42,3","56,4"),1.2,-0.2),size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada46),labels=c("SÍ"="Si","NO, porque Promocioné"="No\n(promocionó)","NO"="No"))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Química G. e I. ",
@@ -1106,7 +1107,7 @@ frame47<- data.frame("Consignas final III" = names(table47),
 
 G13.3<-ggplot(frame47, aes(x =Consignas.final.III, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame47$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame47$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada47),labels=c("Muy claras"="Muy\n claras","Claras"="Claras","Poco claras"="Poco\n claras"))+
   labs(title = "Química G. e I.",
@@ -1128,7 +1129,7 @@ frame48<- data.frame("Tiempo examen final III" = names(table48),
 
 G14.3<-ggplot(frame48, aes(x =Tiempo.examen.final.III, y =as.numeric(gsub(",", ".", Porcentaje)))) +
   geom_bar(stat = "identity", fill = "steelblue",color="black") +
-  geom_text(aes(label =paste0(frame48$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=2.5,fontface="bold")+
+  geom_text(aes(label =paste0(frame48$Porcentaje,"%\n(",Frecuencia,")")),vjust=1.2,size=4,fontface="bold")+
   ylim(0,100)+
   scale_x_discrete(limits = levels(tabla.ordenada48))+ #ordeno categorías como aparecen en la encuesta
   labs(title = "Química G. e I. ",

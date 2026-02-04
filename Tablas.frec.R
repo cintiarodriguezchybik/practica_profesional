@@ -116,8 +116,10 @@ encuesta$Condicion.alcanzada.III <- factor(encuesta$Condicion.alcanzada.III, lev
 
 tabla7 <- table(encuesta$Condicion.alcanzada.III,encuesta$Ingreso)
 tabla7_con_totales <- addmargins(tabla7) # Agregar totales marginales
-print(tabla7_con_totales) # Mostrar la tabla
+
 rownames(tabla7_con_totales)[rownames(tabla7_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
+rownames(tabla7_con_totales)[rownames(tabla7_con_totales) == "Me anoté, pero no empecé a cursar."]<-"No cursé"
+print(tabla7_con_totales) # Mostrar la tabla
 
                     #test chi cuadrado
 
@@ -130,12 +132,13 @@ chi.7<-chisq.test(tabla7_agrupado)
 print(chi.7)
 
 # Condicion.alcanzada.I x Tiene.trabajo
+encuesta$Tiene.trabajo <- factor(encuesta$Tiene.trabajo, levels = c("SÍ","NO")) #CAMBIO EL ORDEN
 
 tabla8 <- table(encuesta$Condicion.alcanzada.I,encuesta$Tiene.trabajo)
 tabla8_con_totales <- addmargins(tabla8) # Agregar totales marginales
-print(tabla8_con_totales) # Mostrar la tabla
 rownames(tabla8_con_totales)[rownames(tabla8_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
-                     #test chi cuadrado
+print(tabla8_con_totales) # Mostrar la tabla 
+                    #test chi cuadrado
 
 Condicion.alcanzada.I_agrupado<-ifelse(encuesta$Condicion.alcanzada.I %in% c("Abandoné","Libre (rendí las evaluaciones pero me fue mal)"),"No logrado","Logrado")
 
@@ -148,8 +151,8 @@ print(chi.11)
 
 tabla9 <- table(encuesta$Condicion.alcanzada.II,encuesta$Tiene.trabajo)
 tabla9_con_totales <- addmargins(tabla9) # Agregar totales marginales
-print(tabla9_con_totales) # Mostrar la tabla
 rownames(tabla9_con_totales)[rownames(tabla9_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
+print(tabla9_con_totales) # Mostrar la tabla
                  #test chi cuadrado
 
 Condicion.alcanzada.II_agrupado<-ifelse(encuesta$Condicion.alcanzada.II %in% c("Abandoné","Libre (rendí las evaluaciones pero me fue mal)"),"No logrado","Logrado")
@@ -163,9 +166,9 @@ print(chi.12)
 
 tabla10 <- table(encuesta$Condicion.alcanzada.III,encuesta$Tiene.trabajo)
 tabla10_con_totales <- addmargins(tabla10) # Agregar totales marginales
-print(tabla10_con_totales) # Mostrar la tabla
 rownames(tabla10_con_totales)[rownames(tabla10_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
 rownames(tabla10_con_totales)[rownames(tabla10_con_totales) == "Me anoté, pero no empecé a cursar."]<-"No cursé"
+print(tabla10_con_totales) # Mostrar la tabla
                
                               #test chi cuadrado
 
@@ -181,44 +184,52 @@ print(chi.13)
 
 # Asistencia.consulta.I x Tiempo.traslado
 
+encuesta$Tiempo.traslado <- factor(encuesta$Tiempo.traslado, levels = c("Menos de 1 h.","Entre 1 y 2 hs.","Entre 2 y 3 hs.","Más de 3 hs."))
+encuesta$Asistencia.consulta.I<-factor(encuesta$Asistencia.consulta.I,levels=c("NUNCA","A VECES","SÍ"))
+
 tabla11 <- table(encuesta$Asistencia.consulta.I,encuesta$Tiempo.traslado)
 tabla11_con_totales <- addmargins(tabla11) # Agregar totales marginales
-print(tabla11_con_totales) # Mostrar la tabla
 colnames(tabla11_con_totales)[colnames(tabla11_con_totales) =="Entre 1 y 2 hs."]<-"1-2hs."
 colnames(tabla11_con_totales)[colnames(tabla11_con_totales) =="Entre 2 y 3 hs."]<-"2-3hs."
 colnames(tabla11_con_totales)[colnames(tabla11_con_totales) =="Menos de 1 h."]<-"<1h."
 colnames(tabla11_con_totales)[colnames(tabla11_con_totales) =="Más de 3 hs."]<-">3hs." 
-                           
+print(tabla11_con_totales) # Mostrar la tabla
+
 # Asistencia.consulta.II x Tiempo.traslado
+
+encuesta$Asistencia.consulta.II<-factor(encuesta$Asistencia.consulta.II,levels=c("NUNCA","A VECES","SÍ"))
 
 tabla12 <- table(encuesta$Asistencia.consulta.II,encuesta$Tiempo.traslado)
 tabla12_con_totales <- addmargins(tabla12) # Agregar totales marginales
-print(tabla12_con_totales) # Mostrar la tabla
 colnames(tabla12_con_totales)[colnames(tabla12_con_totales) =="Entre 1 y 2 hs."]<-"1-2hs."
 colnames(tabla12_con_totales)[colnames(tabla12_con_totales) =="Entre 2 y 3 hs."]<-"2-3hs."
 colnames(tabla12_con_totales)[colnames(tabla12_con_totales) =="Menos de 1 h."]<-"<1h."
 colnames(tabla12_con_totales)[colnames(tabla12_con_totales) =="Más de 3 hs."]<-">3hs." 
+print(tabla12_con_totales) # Mostrar la tabla
 
 # Asistencia.consulta.III x Tiempo.traslado
 
+encuesta$Asistencia.consulta.III<-factor(encuesta$Asistencia.consulta.III,levels=c("NUNCA","A VECES","SÍ"))
+
 tabla13 <- table(encuesta$Asistencia.consulta.III,encuesta$Tiempo.traslado)
 tabla13_con_totales <- addmargins(tabla13) # Agregar totales marginales
-print(tabla13_con_totales) # Mostrar la tabla
 colnames(tabla13_con_totales)[colnames(tabla13_con_totales) =="Entre 1 y 2 hs."]<-"1-2hs."
 colnames(tabla13_con_totales)[colnames(tabla13_con_totales) =="Entre 2 y 3 hs."]<-"2-3hs."
 colnames(tabla13_con_totales)[colnames(tabla13_con_totales) =="Menos de 1 h."]<-"<1h."
 colnames(tabla13_con_totales)[colnames(tabla13_con_totales) =="Más de 3 hs."]<-">3hs." 
+print(tabla13_con_totales) # Mostrar la tabla
 
 # Condicion.alcanzada.I x Calidad.explicativa.docente.I
 
 encuesta$Condicion.alcanzada.I <- factor(encuesta$Condicion.alcanzada.I, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Regular","Promocioné")) #CAMBIO EL ORDEN
+encuesta$Calidad.explicativa.docente.I<-factor(encuesta$Calidad.explicativa.docente.I,levels=c("No me resultaron claras","Claras","Muy claras"))
 
 tabla14 <- table(encuesta$Calidad.explicativa.docente.I,encuesta$Condicion.alcanzada.I)
 tabla14_con_totales <- addmargins(tabla14) # Agregar totales marginales
-print(tabla14_con_totales) # Mostrar la tabla
 colnames(tabla14_con_totales)[colnames(tabla14_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
 rownames(tabla14_con_totales)[rownames(tabla14_con_totales) == "No me resultaron claras"] <- "No claras"
- 
+print(tabla14_con_totales) # Mostrar la tabla
+
                    #test chi cuadrado
 
 Condicion.alcanzada.I_agrupado<-ifelse(encuesta$Condicion.alcanzada.I %in% c("Libre (rendí las evaluaciones pero me fue mal)"),"No logrado","Logrado")
@@ -231,12 +242,13 @@ print(chi.17)
 # Condicion.alcanzada.II x Calidad.explicativa.docente.II
 
 encuesta$Condicion.alcanzada.II <- factor(encuesta$Condicion.alcanzada.II, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Regular","Promocioné")) #CAMBIO EL ORDEN
+encuesta$Calidad.explicativa.docente.II<-factor(encuesta$Calidad.explicativa.docente.II,levels=c("No me resultaron claras","Claras","Muy claras"))
 
 tabla15 <- table(encuesta$Calidad.explicativa.docente.II,encuesta$Condicion.alcanzada.II)
 tabla15_con_totales <- addmargins(tabla15) # Agregar totales marginales
-print(tabla15_con_totales) # Mostrar la tabla
 colnames(tabla15_con_totales)[colnames(tabla15_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
 rownames(tabla15_con_totales)[rownames(tabla15_con_totales) == "No me resultaron claras"] <- "No claras"
+print(tabla15_con_totales) # Mostrar la tabla
 
                   #test chi cuadrado
 
@@ -250,12 +262,13 @@ print(chi.18)
 # Condicion.alcanzada.III x Calidad.explicativa.docente.III
 
 encuesta$Condicion.alcanzada.III <- factor(encuesta$Condicion.alcanzada.III, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Regular","Promocioné")) #CAMBIO EL ORDEN
+encuesta$Calidad.explicativa.docente.III<-factor(encuesta$Calidad.explicativa.docente.III,levels=c("No me resultaron claras","Claras","Muy claras"))
 
 tabla16 <- table(encuesta$Calidad.explicativa.docente.III,encuesta$Condicion.alcanzada.III)
 tabla16_con_totales <- addmargins(tabla16) # Agregar totales marginales
-print(tabla16_con_totales) # Mostrar la tabla
 colnames(tabla16_con_totales)[colnames(tabla16_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
 rownames(tabla16_con_totales)[rownames(tabla16_con_totales) == "No me resultaron claras"] <- "No claras"
+print(tabla16_con_totales) # Mostrar la tabla
 
                     #test chi cuadrado
 
@@ -296,11 +309,12 @@ print(tabla19_con_totales) # Mostrar la tabla
 # Asistencia.consulta.I x Condicion.alcanzada.I 
 
 encuesta$Asistencia.consulta.I<-factor(encuesta$Asistencia.consulta.I,levels=c("SÍ","A VECES","NUNCA"))
+encuesta$Condicion.alcanzada.I <- factor(encuesta$Condicion.alcanzada.I, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Promocioné","Regular")) #CAMBIO EL ORDEN
 
 tabla20 <- table(encuesta$Condicion.alcanzada.I,encuesta$Asistencia.consulta.I)
 tabla20_con_totales <- addmargins(tabla20) # Agregar totales marginales
-print(tabla20_con_totales) # Mostrar la tabla
 rownames(tabla20_con_totales)[rownames(tabla20_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
+print(tabla20_con_totales) # Mostrar la tabla
 
                       #test chi cuadrado
 
@@ -316,12 +330,14 @@ print(chi.23)
 # Asistencia.consulta.II x Condicion.alcanzada.II 
 
 encuesta$Asistencia.consulta.II<-factor(encuesta$Asistencia.consulta.II,levels=c("SÍ","A VECES","NUNCA"))
+encuesta$Condicion.alcanzada.II <- factor(encuesta$Condicion.alcanzada.II, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Promocioné","Regular")) #CAMBIO EL ORDEN
 
 tabla21 <- table(encuesta$Condicion.alcanzada.II,encuesta$Asistencia.consulta.II)
 tabla21_con_totales <- addmargins(tabla21) # Agregar totales marginales
-print(tabla21_con_totales) # Mostrar la tabla
 rownames(tabla21_con_totales)[rownames(tabla21_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
-                         #test chi cuadrado
+print(tabla21_con_totales) # Mostrar la tabla
+
+                        #test chi cuadrado
 
 Condicion.alcanzada.II_agrupado<-ifelse(encuesta$Condicion.alcanzada.II %in% c("Libre (rendí las evaluaciones pero me fue mal)"),"No logrado","Logrado")
 
@@ -333,12 +349,15 @@ print(chi.24)
 # Asistencia.consulta.III x Condicion.alcanzada.III
 
 encuesta$Asistencia.consulta.III<-factor(encuesta$Asistencia.consulta.III,levels=c("SÍ","A VECES","NUNCA"))
+encuesta$Condicion.alcanzada.III <- factor(encuesta$Condicion.alcanzada.III, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Promocioné","Regular")) #CAMBIO EL ORDEN
 
 tabla22 <- table(encuesta$Condicion.alcanzada.III,encuesta$Asistencia.consulta.III)
 tabla22_con_totales <- addmargins(tabla22) # Agregar totales marginales
-print(tabla22_con_totales) # Mostrar la tabla
+
 rownames(tabla22_con_totales)[rownames(tabla22_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
-                               #test chi cuadrado
+print(tabla22_con_totales) # Mostrar la tabla
+
+                              #test chi cuadrado
 
 Condicion.alcanzada.III_agrupado<-ifelse(encuesta$Condicion.alcanzada.III %in% c("Libre (rendí las evaluaciones pero me fue mal)"),"No logrado","Logrado")
 
@@ -349,117 +368,121 @@ print(chi.19)
 
 # Condicion.cursado.I x Condicion.alcanzada.I
 
-encuesta$Condicion.cursado.I <- factor(encuesta$Condicion.cursado.I, levels = c("Recursante","Cambio de plan", "Ingresante" )) #CAMBIO EL ORDEN
+encuesta$Condicion.cursado.I <- factor(encuesta$Condicion.cursado.I, levels = c("Ingresante","Cambio de plan", "Recursante" )) #CAMBIO EL ORDEN
 
 tabla23 <- table(encuesta$Condicion.alcanzada.I,encuesta$Condicion.cursado.I)
 tabla23_con_totales <- addmargins(tabla23) # Agregar totales marginales
-print(tabla23_con_totales) # Mostrar la tabla
 rownames(tabla23_con_totales)[rownames(tabla23_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
+print(tabla23_con_totales) # Mostrar la tabla
+
 # Condicion.cursado.II x Condicion.alcanzada.II
 
-encuesta$Condicion.cursado.II <- factor(encuesta$Condicion.cursado.II, levels = c("Recursante","Cambio de plan", "Ingresante" )) #CAMBIO EL ORDEN
+encuesta$Condicion.cursado.II <- factor(encuesta$Condicion.cursado.II, levels = c("Ingresante","Cambio de plan", "Recursante" )) #CAMBIO EL ORDEN
 
 tabla24 <- table(encuesta$Condicion.alcanzada.II,encuesta$Condicion.cursado.II)
 tabla24_con_totales <- addmargins(tabla24) # Agregar totales marginales
-print(tabla24_con_totales) # Mostrar la tabla
 rownames(tabla24_con_totales)[rownames(tabla24_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
+print(tabla24_con_totales) # Mostrar la tabla
 
 # Condicion.cursado.III x Condicion.alcanzada.III
 
-encuesta$Condicion.cursado.III <- factor(encuesta$Condicion.cursado.III, levels = c("Recursante","Cambio de plan", "Ingresante" )) #CAMBIO EL ORDEN
+encuesta$Condicion.cursado.III <- factor(encuesta$Condicion.cursado.III, levels = c("Ingresante","Cambio de plan", "Recursante" )) #CAMBIO EL ORDEN
+encuesta$Condicion.alcanzada.III <- factor(encuesta$Condicion.alcanzada.III, levels = c("Me anoté, pero no empecé a cursar.", "Abandoné","Libre (rendí las evaluaciones pero me fue mal)","Promocioné","Regular" )) #CAMBIO EL ORDEN
 
 tabla25 <- table(encuesta$Condicion.alcanzada.III,encuesta$Condicion.cursado.III)
 tabla25_con_totales <- addmargins(tabla25) # Agregar totales marginales
-print(tabla25_con_totales) # Mostrar la tabla
 rownames(tabla25_con_totales)[rownames(tabla25_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
+rownames(tabla25_con_totales)[rownames(tabla25_con_totales) == "Me anoté, pero no empecé a cursar."]<-"No cursé"
+print(tabla25_con_totales) # Mostrar la tabla
 
 #Condicion.alcanzada.I x Recursos.utilizados.I
 
-encuesta$Recursos.utilizados.I <- factor(encuesta$Recursos.utilizados.I, levels = c("Muy adecuados","Adecuados", "Poco adecuados" )) #CAMBIO EL ORDEN
+encuesta$Recursos.utilizados.I <- factor(encuesta$Recursos.utilizados.I, levels = c("Poco adecuados" ,"Adecuados","Muy adecuados" )) #CAMBIO EL ORDEN
+encuesta$Condicion.alcanzada.I <- factor(encuesta$Condicion.alcanzada.I, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Promocioné","Regular" )) #CAMBIO EL ORDEN
 
 tabla26 <- table(encuesta$Condicion.alcanzada.I,encuesta$Recursos.utilizados.I)
 tabla26_con_totales <- addmargins(tabla26) # Agregar totales marginales
-print(tabla26_con_totales) # Mostrar la tabla
 rownames(tabla26_con_totales)[rownames(tabla26_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
+print(tabla26_con_totales) # Mostrar la tabla
 
 #Condicion.alcanzada.II x Recursos.utilizados.II
 
-encuesta$Recursos.utilizados.II <- factor(encuesta$Recursos.utilizados.II, levels = c("Muy adecuados","Adecuados", "Poco adecuados" )) #CAMBIO EL ORDEN
+encuesta$Recursos.utilizados.II <- factor(encuesta$Recursos.utilizados.II, levels = c("Poco adecuados" ,"Adecuados","Muy adecuados" )) #CAMBIO EL ORDEN
+encuesta$Condicion.alcanzada.II <- factor(encuesta$Condicion.alcanzada.II, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Promocioné","Regular" )) #CAMBIO EL ORDEN
 
 tabla27 <- table(encuesta$Condicion.alcanzada.II,encuesta$Recursos.utilizados.II)
 tabla27_con_totales <- addmargins(tabla27) # Agregar totales marginales
-print(tabla27_con_totales) # Mostrar la tabla
 rownames(tabla27_con_totales)[rownames(tabla27_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
+print(tabla27_con_totales) # Mostrar la tabla
 
 #Condicion.alcanzada.III x Recursos.utilizados.III
 
-encuesta$Recursos.utilizados.III <- factor(encuesta$Recursos.utilizados.III, levels = c("Muy adecuados","Adecuados", "Poco adecuados" )) #CAMBIO EL ORDEN
+encuesta$Recursos.utilizados.III <- factor(encuesta$Recursos.utilizados.III, levels = c("Poco adecuados" ,"Adecuados","Muy adecuados" )) #CAMBIO EL ORDEN
+encuesta$Condicion.alcanzada.III <- factor(encuesta$Condicion.alcanzada.III, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Promocioné","Regular" )) #CAMBIO EL ORDEN
 
 tabla28 <- table(encuesta$Condicion.alcanzada.III,encuesta$Recursos.utilizados.III)
 tabla28_con_totales <- addmargins(tabla28) # Agregar totales marginales
-print(tabla28_con_totales) # Mostrar la tabla
 rownames(tabla28_con_totales)[rownames(tabla28_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
+print(tabla28_con_totales) # Mostrar la tabla
 
 #Contenido.clase/parcial.I x Condicion.alcanzada.I
 
-encuesta$Condicion.alcanzada.I <- factor(encuesta$Condicion.alcanzada.I, levels = c("Regular","Promocioné","Libre (rendí las evaluaciones pero me fue mal)")) #CAMBIO EL ORDEN
+encuesta$Condicion.alcanzada.I <- factor(encuesta$Condicion.alcanzada.I, levels = c("Promocioné","Regular","Libre (rendí las evaluaciones pero me fue mal)")) #CAMBIO EL ORDEN
 encuesta$`Contenidos.clase/parcial.I` <- factor(encuesta$`Contenidos.clase/parcial.I`, levels = c("Algunos temas no los vimos en las clases.","Algunos temas los vimos poco en las clases.","Si, los vimos varias veces")) #CAMBIO EL ORDEN
 
 tabla29 <- table(encuesta$`Contenidos.clase/parcial.I`,encuesta$Condicion.alcanzada.I)
 tabla29_con_totales <- addmargins(tabla29) # Agregar totales marginales
-print(tabla29_con_totales) # Mostrar la tabla
 colnames(tabla29_con_totales)[colnames(tabla29_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
 rownames(tabla29_con_totales)[rownames(tabla29_con_totales) == "Algunos temas no los vimos en las clases."] <- "Algunos no"
 rownames(tabla29_con_totales)[rownames(tabla29_con_totales) == "Algunos temas los vimos poco en las clases."] <- "Si/poco"
 rownames(tabla29_con_totales)[rownames(tabla29_con_totales) == "Si, los vimos varias veces"] <- "Si"
- 
+print(tabla29_con_totales) # Mostrar la tabla
+
 #Contenido.clase/parcial.II x Condicion.alcanzada.II
 
-encuesta$Condicion.alcanzada.II <- factor(encuesta$Condicion.alcanzada.II, levels = c("Regular","Promocioné","Libre (rendí las evaluaciones pero me fue mal)")) #CAMBIO EL ORDEN
+encuesta$Condicion.alcanzada.II <- factor(encuesta$Condicion.alcanzada.II, levels = c("Promocioné","Regular","Libre (rendí las evaluaciones pero me fue mal)")) #CAMBIO EL ORDEN
 encuesta$`Contenidos.clase/parcial.II` <- factor(encuesta$`Contenidos.clase/parcial.II`, levels = c("Algunos temas no los vimos en las clases.","Algunos temas los vimos poco en las clases.","Si, los vimos varias veces")) #CAMBIO EL ORDEN
 
 tabla30 <- table(encuesta$`Contenidos.clase/parcial.II`,encuesta$Condicion.alcanzada.II)
 tabla30_con_totales <- addmargins(tabla30) # Agregar totales marginales
-print(tabla30_con_totales) # Mostrar la tabla
 colnames(tabla30_con_totales)[colnames(tabla30_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
 rownames(tabla30_con_totales)[rownames(tabla30_con_totales) == "Algunos temas no los vimos en las clases."] <- "Algunos no"
 rownames(tabla30_con_totales)[rownames(tabla30_con_totales) == "Algunos temas los vimos poco en las clases."] <- "Si/poco"
 rownames(tabla30_con_totales)[rownames(tabla30_con_totales) == "Si, los vimos varias veces"] <- "Si"
-
+print(tabla30_con_totales) # Mostrar la tabla
 
 #Contenido.clase/parcial.III x Condicion.alcanzada.III
 
-encuesta$Condicion.alcanzada.III <- factor(encuesta$Condicion.alcanzada.III, levels = c("Regular","Promocioné","Libre (rendí las evaluaciones pero me fue mal)")) #CAMBIO EL ORDEN
+encuesta$Condicion.alcanzada.III <- factor(encuesta$Condicion.alcanzada.III, levels = c("Promocioné","Regular","Libre (rendí las evaluaciones pero me fue mal)")) #CAMBIO EL ORDEN
 encuesta$`Contenidos.clase/parcial.III` <- factor(encuesta$`Contenidos.clase/parcial.III`, levels = c("Algunos temas no los vimos en las clases.","Algunos temas los vimos poco en las clases.","Si, los vimos varias veces")) #CAMBIO EL ORDEN
 
 tabla31 <- table(encuesta$`Contenidos.clase/parcial.III`,encuesta$Condicion.alcanzada.III)
 tabla31_con_totales <- addmargins(tabla31) # Agregar totales marginales
-print(tabla31_con_totales) # Mostrar la tabla
 colnames(tabla31_con_totales)[colnames(tabla31_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
 rownames(tabla31_con_totales)[rownames(tabla31_con_totales) == "Algunos temas no los vimos en las clases."] <- "Algunos no"
 rownames(tabla31_con_totales)[rownames(tabla31_con_totales) == "Algunos temas los vimos poco en las clases."] <- "Si/poco"
 rownames(tabla31_con_totales)[rownames(tabla31_con_totales) == "Si, los vimos varias veces"] <- "Si"
-
+print(tabla31_con_totales) # Mostrar la tabla
 
 # Condicion.alcanzada.I x Contenidos.I
 
-encuesta$Condicion.alcanzada.I <- factor(encuesta$Condicion.alcanzada.I, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Regular","Promocioné")) #CAMBIO EL ORDEN
+encuesta$Condicion.alcanzada.I <- factor(encuesta$Condicion.alcanzada.I, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Promocioné","Regular")) #CAMBIO EL ORDEN
 encuesta$Contenidos.I<-factor(encuesta$Contenidos.I,levels=c("Excesivo","Adecuado","Insuficiente"))
 
 tabla32 <- table(encuesta$Condicion.alcanzada.I,encuesta$Contenidos.I)
 tabla32_con_totales <- addmargins(tabla32) # Agregar totales marginales
-print(tabla32_con_totales) # Mostrar la tabla
 rownames(tabla32_con_totales)[rownames(tabla32_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
+print(tabla32_con_totales) # Mostrar la tabla
 
 # Condicion.alcanzada.II x Contenidos.II
 
-encuesta$Condicion.alcanzada.II <- factor(encuesta$Condicion.alcanzada.II, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Regular","Promocioné")) #CAMBIO EL ORDEN
+encuesta$Condicion.alcanzada.II <- factor(encuesta$Condicion.alcanzada.II, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Promocioné","Regular")) #CAMBIO EL ORDEN
 encuesta$Contenidos.II<-factor(encuesta$Contenidos.II,levels=c("Excesivo","Adecuado","Insuficiente"))
 
 tabla33 <- table(encuesta$Condicion.alcanzada.II,encuesta$Contenidos.II)
 tabla33_con_totales <- addmargins(tabla33) # Agregar totales marginales
-print(tabla33_con_totales) # Mostrar la tabla
 rownames(tabla33_con_totales)[rownames(tabla33_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
+print(tabla33_con_totales) # Mostrar la tabla
 
                     #test chi cuadrado
 
@@ -472,14 +495,13 @@ print(chi.35)
 
 # Condicion.alcanzada.III x Contenidos.III
 
-encuesta$Condicion.alcanzada.III <- factor(encuesta$Condicion.alcanzada.III, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Regular","Promocioné")) #CAMBIO EL ORDEN
+encuesta$Condicion.alcanzada.III <- factor(encuesta$Condicion.alcanzada.III, levels = c("Libre (rendí las evaluaciones pero me fue mal)","Promocioné","Regular")) #CAMBIO EL ORDEN
 encuesta$Contenidos.III<-factor(encuesta$Contenidos.III,levels=c("Excesivo","Adecuado","Insuficiente"))
 
 tabla34 <- table(encuesta$Condicion.alcanzada.III,encuesta$Contenidos.III)
 tabla34_con_totales <- addmargins(tabla34)# Agregar totales marginales
-print(tabla34_con_totales) # Mostrar la tabla
 rownames(tabla34_con_totales)[rownames(tabla34_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
-
+print(tabla34_con_totales) # Mostrar la tabla
                         #test chi cuadrado
 
 Condicion.alcanzada.III_agrupado<-ifelse(encuesta$Condicion.alcanzada.III %in% c("Libre (rendí las evaluaciones pero me fue mal)"),"No logrado","Logrado")
@@ -497,8 +519,8 @@ encuesta$Calidad.explicativa.docente.I<-factor(encuesta$Calidad.explicativa.doce
 
 tabla35 <- table(encuesta$Asistencia.consulta.I,encuesta$Calidad.explicativa.docente.I)
 tabla35_con_totales <- addmargins(tabla35) # Agregar totales marginales
-print(tabla35_con_totales) # Mostrar la tabla
 colnames(tabla35_con_totales)[colnames(tabla35_con_totales) == "No me resultaron claras"] <- "No claras"
+print(tabla35_con_totales) # Mostrar la tabla
 
 # Asistencia.consulta.II x Calidad.explicativa.docente.II 
 
@@ -507,8 +529,8 @@ encuesta$Calidad.explicativa.docente.II<-factor(encuesta$Calidad.explicativa.doc
 
 tabla36 <- table(encuesta$Asistencia.consulta.II,encuesta$Calidad.explicativa.docente.II)
 tabla36_con_totales <- addmargins(tabla36) # Agregar totales marginales
-print(tabla36_con_totales) # Mostrar la tabla
 colnames(tabla36_con_totales)[colnames(tabla36_con_totales) == "No me resultaron claras"] <- "No claras"
+print(tabla36_con_totales) # Mostrar la tabla
 
                      #test chi cuadrado
 
@@ -526,8 +548,8 @@ encuesta$Calidad.explicativa.docente.III<-factor(encuesta$Calidad.explicativa.do
 
 tabla37 <- table(encuesta$Asistencia.consulta.III,encuesta$Calidad.explicativa.docente.III)
 tabla37_con_totales <- addmargins(tabla37) # Agregar totales marginales
-print(tabla37_con_totales) # Mostrar la tabla
 colnames(tabla37_con_totales)[colnames(tabla37_con_totales) == "No me resultaron claras"] <- "No claras"
+print(tabla37_con_totales) # Mostrar la tabla
 
                     #test chi cuadrado
 
@@ -541,8 +563,8 @@ encuesta$Asistencia.particular.I<-factor(encuesta$Asistencia.particular.I,levels
 
 tabla38 <- table(encuesta$Calidad.explicativa.docente.I,encuesta$Asistencia.particular.I)
 tabla38_con_totales <- addmargins(tabla38) # Agregar totales marginales
-print(tabla38_con_totales) # Mostrar la tabla
 rownames(tabla38_con_totales)[rownames(tabla38_con_totales) == "No me resultaron claras"] <- "No claras"
+print(tabla38_con_totales) # Mostrar la tabla
 
                     #test chi cuadrado
 
@@ -556,8 +578,8 @@ encuesta$Asistencia.particular.II<-factor(encuesta$Asistencia.particular.II,leve
 
 tabla39 <- table(encuesta$Calidad.explicativa.docente.II,encuesta$Asistencia.particular.II)
 tabla39_con_totales <- addmargins(tabla39) # Agregar totales marginales
-print(tabla39_con_totales) # Mostrar la tabla
 rownames(tabla39_con_totales)[rownames(tabla39_con_totales) == "No me resultaron claras"] <- "No claras"
+print(tabla39_con_totales) # Mostrar la tabla
 
 # Calidad.explicativa.docente.III x Asistencia.particular.III
 
@@ -566,8 +588,8 @@ encuesta$Asistencia.particular.III<-factor(encuesta$Asistencia.particular.III,le
 
 tabla40 <- table(encuesta$Calidad.explicativa.docente.III,encuesta$Asistencia.particular.III)
 tabla40_con_totales <- addmargins(tabla40) # Agregar totales marginales
-print(tabla40_con_totales) # Mostrar la tabla
 rownames(tabla40_con_totales)[rownames(tabla40_con_totales) == "No me resultaron claras"] <- "No claras"
+print(tabla40_con_totales) # Mostrar la tabla
 
                      #test chi cuadrado
 
@@ -581,8 +603,8 @@ encuesta$Rendimiento.consulta.I<-factor(encuesta$Rendimiento.consulta.I,levels=c
 
 tabla41<- table(encuesta$Condicion.alcanzada.I,encuesta$Rendimiento.consulta.I)
 tabla41_con_totales <- addmargins(tabla41) # Agregar totales marginales
-print(tabla41_con_totales) # Mostrar la tabla
 rownames(tabla41_con_totales)[rownames(tabla41_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
+print(tabla41_con_totales) # Mostrar la tabla
 
 # Condicion.alcanzada.II x Rendimiento.consulta.II
 
@@ -591,8 +613,8 @@ encuesta$Rendimiento.consulta.II<-factor(encuesta$Rendimiento.consulta.II,levels
 
 tabla42 <- table(encuesta$Condicion.alcanzada.II,encuesta$Rendimiento.consulta.II)
 tabla42_con_totales <- addmargins(tabla42) # Agregar totales marginales
-print(tabla42_con_totales) # Mostrar la tabla
 rownames(tabla42_con_totales)[rownames(tabla42_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
+print(tabla42_con_totales) # Mostrar la tabla
 
 # Condicion.alcanzada.III x Rendimiento.consulta.III
 
@@ -601,9 +623,8 @@ encuesta$Rendimiento.consulta.III<-factor(encuesta$Rendimiento.consulta.III,leve
 
 tabla43 <- table(encuesta$Condicion.alcanzada.III,encuesta$Rendimiento.consulta.III)
 tabla43_con_totales <- addmargins(tabla43) # Agregar totales marginales
-print(tabla43_con_totales) # Mostrar la tabla
 rownames(tabla43_con_totales)[rownames(tabla43_con_totales) == "Libre (rendí las evaluaciones pero me fue mal)"] <- "Libre"
-
+print(tabla43_con_totales) # Mostrar la tabla
 
 # Consignas.final.I x Condicion.alcanzada.I
 

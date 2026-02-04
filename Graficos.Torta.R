@@ -1,7 +1,7 @@
 #Busco la ruta del archivo de excel
 
 file.choose()
-ruta_archivo<-"C:\\Users\\PC\\Downloads\\Encuesta Plan 2023 (Respuestas)(1).xlsx"
+ruta_archivo<-"C:\\Users\\PC\\Desktop\\Trabajo Final Cintia Sabrina Rodriguez Chybik\\Trabajo Final Cintia Sabrina Rodriguez Chybik\\Base de datos depurada.xlsx"
 
 #Leo el archivo de Excel
 
@@ -34,11 +34,11 @@ datos_barras
 nuevos_datos <- datos_barras
 nuevos_datos[3, "n"] <- 15
 nuevos_datos[3, "porcentaje"] <- 16.5
-nuevos_datos[3, "etiqueta"] <- "15\n(16.5%)"
-nuevos_datos[1,4]<-"43\n(47.2%)"
-nuevos_datos[2,4]<-"33\n(36.3%)"
+nuevos_datos[3, "etiqueta"] <- "16,5%\n(15)"
+nuevos_datos[1,4]<-"47,2%\n(43)"
+nuevos_datos[2,4]<-"36,3%\n(33)"
 
-colores <- c("#FFFF00", "#FFC125", "#E15759") 
+colores <- c("steelblue", "lightblue", "gray")
 
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.grupal.I)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
@@ -74,11 +74,11 @@ datos_barras
 nuevos_datos <- datos_barras
 nuevos_datos[3, "n"] <- 23
 nuevos_datos[3, "porcentaje"] <- 25.3
-nuevos_datos[3, "etiqueta"] <- "23\n(25.3%)"
-nuevos_datos[1,4]<-"33\n(36.3%)"
-nuevos_datos[2,4]<-"35\n(38.4%)"
+nuevos_datos[3, "etiqueta"] <- "25,3%\n(23)"
+nuevos_datos[1,4]<-"36,3%\n(33)"
+nuevos_datos[2,4]<-"38,4%\n(35)"
 
-colores <- c("#FFFF00", "#FFC125", "#E15759") 
+colores <- c("steelblue", "lightblue", "gray")
 
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.individual.I)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
@@ -115,7 +115,7 @@ nuevos_datos[3, "etiqueta"] <- "25\n(27.5%)"
 nuevos_datos[1,4]<-"34\n(37.4%)"
 nuevos_datos[2,4]<-"32\n(35.1%)"
 
-colores <- c("#FFFF00", "#FFC125", "#E15759") 
+colores <- c("steelblue", "lightblue", "gray")
 
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.tarea.I)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
@@ -148,11 +148,11 @@ datos_barras
 nuevos_datos <- datos_barras
 nuevos_datos[3, "n"] <- 21
 nuevos_datos[3, "porcentaje"] <- 23.1
-nuevos_datos[3, "etiqueta"] <- "21\n(23.1%)"
-nuevos_datos[1,4]<-"40\n(44.0%)"
-nuevos_datos[2,4]<-"30\n(32.9%)"
+nuevos_datos[3, "etiqueta"] <- "23,1%\n(21)"
+nuevos_datos[1,4]<-"44%\n(40)"
+nuevos_datos[2,4]<-"32,9%\n(30)"
 
-colores <- c("#FFFF00", "#FFC125", "#E15759") 
+colores <- c("steelblue", "lightblue", "gray") 
 
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.aplicada.I)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
@@ -185,11 +185,11 @@ datos_barras
 nuevos_datos <- datos_barras
 nuevos_datos[3, "n"] <- 21
 nuevos_datos[3, "porcentaje"] <- 23.1
-nuevos_datos[3, "etiqueta"] <- "21\n(23.1%)"
-nuevos_datos[1,4]<-"43\n(47.2%)"
-nuevos_datos[2,4]<-"27\n(29.7%)"
+nuevos_datos[3, "etiqueta"] <- "23,1%\n(21)"
+nuevos_datos[1,4]<-"47,2%\n(43)"
+nuevos_datos[2,4]<-"29.7%\n(27)"
 
-colores <- c("#FFFF00", "#FFC125", "#E15759") 
+colores <- c("steelblue", "lightblue", "gray")
 
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.razonada.I)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
@@ -224,11 +224,11 @@ datos_barras
 nuevos_datos <- datos_barras
 nuevos_datos[3, "n"] <- 19
 nuevos_datos[3, "porcentaje"] <- 21.1
-nuevos_datos[3, "etiqueta"] <- "19\n(21.1%)"
-nuevos_datos[1,4]<-"37\n(41.1%)"
-nuevos_datos[2,4]<-"34\n(37.8%)"
+nuevos_datos[3, "etiqueta"] <- "21,1%\n(19)"
+nuevos_datos[1,4]<-"41,1%\n(37)"
+nuevos_datos[2,4]<-"37,8%\n(34)"
 
-colores <- c("green", "#228B22", "#E15759") 
+colores <- c("steelblue", "lightblue", "gray")
 
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.grupal.II)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
@@ -264,11 +264,11 @@ datos_barras
 nuevos_datos <- datos_barras
 nuevos_datos[3, "n"] <- 29
 nuevos_datos[3, "porcentaje"] <- 32.2
-nuevos_datos[3, "etiqueta"] <- "29\n(32.2%)"
-nuevos_datos[1,4]<-"14\n(15.6%)"
-nuevos_datos[2,4]<-"47\n(52.2%)"
+nuevos_datos[3, "etiqueta"] <- "32,2%\n(29)"
+nuevos_datos[1,4]<-"15,6%\n(14)"
+nuevos_datos[2,4]<-"52,2%\n(47)"
 
-colores <- c("green", "#228B22", "#E15759")
+colores <- c("steelblue", "lightblue", "gray")
 
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.individual.II)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
@@ -301,11 +301,11 @@ datos_barras
 nuevos_datos <- datos_barras
 nuevos_datos[3, "n"] <- 25
 nuevos_datos[3, "porcentaje"] <- 27.8
-nuevos_datos[3, "etiqueta"] <- "25\n(27.8%)"
-nuevos_datos[1,4]<-"19\n(21.1%)"
-nuevos_datos[2,4]<-"46\n(51.1%)"
+nuevos_datos[3, "etiqueta"] <- "27,8%\n(25)"
+nuevos_datos[1,4]<-"21,1%\n(19)"
+nuevos_datos[2,4]<-"51,1%\n(46)"
 
-colores <- c("green", "#228B22", "#E15759")
+colores <- c("steelblue", "lightblue", "gray")
 
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.tarea.II)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
@@ -338,11 +338,11 @@ datos_barras
 nuevos_datos <- datos_barras
 nuevos_datos[3, "n"] <- 25
 nuevos_datos[3, "porcentaje"] <- 27.8
-nuevos_datos[3, "etiqueta"] <- "25\n(27.8%)"
-nuevos_datos[1,4]<-"27\n(30.0%)"
-nuevos_datos[2,4]<-"38\n(42.2%)"
+nuevos_datos[3, "etiqueta"] <- "27,8%\n(25)"
+nuevos_datos[1,4]<-"30%\n(27)"
+nuevos_datos[2,4]<-"42,2%\n(38)"
 
-colores <- c("green", "#228B22", "#E15759")
+colores <- c("steelblue", "lightblue", "gray")
 
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.aplicada.II)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
@@ -375,11 +375,11 @@ datos_barras
 nuevos_datos <- datos_barras
 nuevos_datos[3, "n"] <- 27
 nuevos_datos[3, "porcentaje"] <- 30.0
-nuevos_datos[3, "etiqueta"] <- "27\n(30.0%)"
-nuevos_datos[1,4]<-"25\n(27.8%)"
-nuevos_datos[2,4]<-"38\n(42.2%)"
+nuevos_datos[3, "etiqueta"] <- "30%\n(27)"
+nuevos_datos[1,4]<-"27,8%\n(25)"
+nuevos_datos[2,4]<-"42,2%\n(38)"
 
-colores <- c("green", "#228B22", "#E15759")
+colores <- c("steelblue", "lightblue", "gray")
 
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.razonada.II)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
@@ -415,11 +415,11 @@ datos_barras
 nuevos_datos <- datos_barras
 nuevos_datos[3, "n"] <- 25
 nuevos_datos[3, "porcentaje"] <-31.3 
-nuevos_datos[3, "etiqueta"] <- "25\n(31.3%)"
-nuevos_datos[1,4]<-"24\n(30.0%)"
-nuevos_datos[2,4]<-"31\n(38.7%)"
+nuevos_datos[3, "etiqueta"] <- "31,3%\n(25)"
+nuevos_datos[1,4]<-"30%\n(24)"
+nuevos_datos[2,4]<-"38,7%\n(31)"
 
-colores <- c("pink", "#FF69B4", "#E15759") 
+colores <- c("steelblue", "lightblue", "gray")
 
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.grupal.III)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
@@ -455,11 +455,11 @@ datos_barras
 nuevos_datos <- datos_barras
 nuevos_datos[3, "n"] <- 28
 nuevos_datos[3, "porcentaje"] <- 35.0
-nuevos_datos[3, "etiqueta"] <- "28\n(35.0%)"
-nuevos_datos[1,4]<-"13\n(16.3%)"
-nuevos_datos[2,4]<-"39\n(48.7%)"
+nuevos_datos[3, "etiqueta"] <- "35%\n(28)"
+nuevos_datos[1,4]<-"16,3%\n(13)"
+nuevos_datos[2,4]<-"48,7%\n(39)"
 
-colores <- c("pink", "#FF69B4", "#E15759") 
+colores <- c("steelblue", "lightblue", "gray")
 
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.individual.III)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
@@ -492,12 +492,11 @@ datos_barras
 nuevos_datos <- datos_barras
 nuevos_datos[3, "n"] <- 20
 nuevos_datos[3, "porcentaje"] <- 25.0
-nuevos_datos[3, "etiqueta"] <- "20\n(25.0%)"
-nuevos_datos[1,4]<-"38\n(47.5%)"
-nuevos_datos[2,4]<-"22\n(27.5%)"
+nuevos_datos[3, "etiqueta"] <- "25%\n(20)"
+nuevos_datos[1,4]<-"47,5%\n(38)"
+nuevos_datos[2,4]<-"27,5%\n(22)"
 
-colores <- c("pink", "#FF69B4", "#E15759") 
-
+colores <- c("steelblue", "lightblue", "gray")
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.tarea.III)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
   coord_polar("y", start = 0) +
@@ -529,11 +528,11 @@ datos_barras
 nuevos_datos <- datos_barras
 nuevos_datos[3, "n"] <- 24
 nuevos_datos[3, "porcentaje"] <- 30.0
-nuevos_datos[3, "etiqueta"] <- "24\n(30.0%)"
-nuevos_datos[1,4]<-"28\n(35.0%)"
-nuevos_datos[2,4]<-"28\n(35.0%)"
+nuevos_datos[3, "etiqueta"] <- "30%\n(24)"
+nuevos_datos[1,4]<-"35%\n(28)"
+nuevos_datos[2,4]<-"35%\n(28)"
 
-colores <- c("pink", "#FF69B4", "#E15759") 
+colores <- c("steelblue", "lightblue", "gray")
 
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.aplicada.III)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
@@ -566,11 +565,11 @@ datos_barras
 nuevos_datos <- datos_barras
 nuevos_datos[3, "n"] <- 26
 nuevos_datos[3, "porcentaje"] <- 32.5
-nuevos_datos[3, "etiqueta"] <- "26\n(32.5%)"
-nuevos_datos[1,4]<-"26\n(32.5%)"
-nuevos_datos[2,4]<-"28\n(35.0%)"
+nuevos_datos[3, "etiqueta"] <- "32,5%\n(26)"
+nuevos_datos[1,4]<-"32,5%\n(26)"
+nuevos_datos[2,4]<-"35%\n(28)"
 
-colores <- c("pink", "#FF69B4", "#E15759") 
+colores <- c("steelblue", "lightblue", "gray")
 
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.razonada.III)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
@@ -597,7 +596,7 @@ datos_barras <- encuesta %>%
     is.na(Cortaderas.general)  ~ "Ns / Nc"),
     levels = c("Sí", "No", "Ns / Nc") )) %>% # Orden personalizado
   count(Cortaderas.general)%>%
-  mutate( porcentaje = n/sum(n)*100,etiqueta = paste0(n, "\n(", round(porcentaje, 1), "%)"))
+  mutate( porcentaje = n/sum(n)*100,etiqueta = paste0(round(porcentaje, 1),"%", "\n(" ,n,  ")"))
 datos_barras
 
 #Reemplazo los valores de la fila de valores faltantes porque hay 1 estudiantes que no debe responder(no es valor faltante)
@@ -608,7 +607,7 @@ nuevos_datos[3, "etiqueta"] <- "8,97%\n(7)"
 nuevos_datos[1,4]<-"50%\n(39)"
 nuevos_datos[2,4]<-"41,03%\n(32)"
 
-colores <- c("skyblue1", "darkviolet", "#E15759") 
+colores <- c("steelblue", "lightblue", "gray") 
 
 ggplot_general<-
 ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.general)) +
@@ -616,7 +615,7 @@ ggplot(nuevos_datos, aes(x = "", y = n, fill = Cortaderas.general)) +
   coord_polar("y", start = 0) +
   geom_text(aes(label = etiqueta), 
             position = position_stack(vjust = 0.5),
-            color = "black", size = 3, fontface = "bold",lineheight = 0.8) +
+            color = "black", size = 5, fontface = "bold",lineheight = 0.8) +
   labs(fill = "Respuesta") +
   theme_void() +
   theme(legend.title = element_text(face = "bold")) +

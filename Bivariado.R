@@ -531,43 +531,6 @@ ggplot(porcentajes, aes(x =as.factor(Tiempo.traslado),y=porcentaje, fill =Asiste
 
 #####################Relacion entre variables de aspecto academico##########################
 
-#Calidad.explicativa.docente x Condicion.alcanzada.I
-#en este orden no lo consideré(sí al reves)
-porcentajes <- encuesta %>%
-  drop_na(Calidad.explicativa.docente.I,Condicion.alcanzada.I)%>% #elimina los NA de ambas var
-  count(Calidad.explicativa.docente.I, Condicion.alcanzada.I) %>%
-  group_by(Calidad.explicativa.docente.I) %>%
-  mutate(
-    porcentaje = n / sum(n),
-    etiqueta = ifelse(porcentaje >= 0.05,
-                      scales::percent(porcentaje, accuracy = 1), #convierte el decimal en porcentaje y con accuracy lo redondea sin decimal
-                      "")
-  ) %>%
-  ungroup()
-
-ggplot(porcentajes, aes(x =as.factor( Calidad.explicativa.docente.I),y=porcentaje, fill = Condicion.alcanzada.I)) +
-  geom_col(position = "fill", color = "white", linewidth = 0.3) + #fill:hace que la barra sume 100% 
-  scale_x_discrete(
-    limits = c("Muy claras", "Claras", "No me resultaron claras"),  # Orden
-    labels = c("Muy claras" = "Muy claras",
-               "Claras" = "claras", 
-               "No me resultaron claras" = "No claras"))+  #  cambio el nombre
-  geom_text(aes(label = etiqueta), 
-            position = position_stack(vjust = 0.5),
-            size = 4, 
-            color = "white", 
-            fontface = "bold") +
-  scale_y_continuous(labels = percent_format()) + #formatea el eje y, de decimales lo convierte a porcentaje
-  scale_fill_manual(values = paleta_colores, name = "Condición")+ 
-  labs(     
-       x = "Explicaciones", 
-       y = "Porcentaje")+
-  theme_minimal() +#elimina los elementos no escenciales del gráfico
-  theme_gray()+ #fondo gris por defecto
-  theme(axis.text.x = element_text(hjust = 0.5),#centra los valores en el eje x
-        plot.title = element_text(size=12,face="bold"),
-        plot.subtitle = element_text(hjust = 0.5,size=10))
-
 #Condicion.alcanzada.IxCalidad.explicativa.docente.I
 
 porcentajes <- encuesta %>%
@@ -1328,7 +1291,8 @@ porcentajes <- encuesta %>%
                       "")
   ) %>%
   ungroup()%>%
-  mutate(Contenidos.I=factor(Contenidos.I,levels=c("Excesivo","Adecuado","Insuficiente")))
+  mutate(Contenidos.I=factor(Contenidos.I,levels=c("Excesivo","Adecuado","Insuficiente")))%>%
+  mutate(Condicion.alcanzada.I=factor(Condicion.alcanzada.I,levels=c("Libre (rendí las evaluaciones pero me fue mal)","Promocioné","Regular")))
          
 
 ggplot_61<-
@@ -1368,7 +1332,9 @@ porcentajes <- encuesta %>%
                       "")
   ) %>%
   ungroup()%>%
-  mutate(Contenidos.II=factor(Contenidos.II,levels=c("Excesivo","Adecuado","Insuficiente")))
+  mutate(Contenidos.II=factor(Contenidos.II,levels=c("Excesivo","Adecuado","Insuficiente")))%>%
+  mutate(Condicion.alcanzada.II=factor(Condicion.alcanzada.II,levels=c("Libre (rendí las evaluaciones pero me fue mal)","Promocioné","Regular")))
+
 
 ggplot_62<-
 ggplot(porcentajes, aes(x =as.factor(Contenidos.II ),y=porcentaje, fill =Condicion.alcanzada.II )) +
@@ -1408,7 +1374,9 @@ porcentajes <- encuesta %>%
                       "")
   ) %>%
   ungroup()%>%
-  mutate(Contenidos.III=factor(Contenidos.III,levels=c("Excesivo","Adecuado","Insuficiente")))
+  mutate(Contenidos.III=factor(Contenidos.III,levels=c("Excesivo","Adecuado","Insuficiente")))%>%
+  mutate(Condicion.alcanzada.III=factor(Condicion.alcanzada.III,levels=c("Libre (rendí las evaluaciones pero me fue mal)","Promocioné","Regular")))
+
 
 ggplot_63<-
 ggplot(porcentajes, aes(x =as.factor(Contenidos.III ),y=porcentaje, fill =Condicion.alcanzada.III)) +
